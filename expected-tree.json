@@ -1,0 +1,50 @@
+{
+    "schema_version": "1.0",
+    "pm": "composer",
+    "pm_version_tested": "2.7",
+    "lockfile": "composer.lock",
+    "pattern": "version-matrix",
+    "toolchain": {
+        "php": "8.3",
+        "composer": "2.7",
+        "docker_image": "composer:2.7-php8.3"
+    },
+    "notes": "Version-matrix probe for PHP 8.3 + Composer 2.7. Only 2 packages: monolog/monolog (direct) and psr/log (transitive). Platform package php>=8.3 does not appear in lockfile packages.",
+    "packages": [
+        {
+            "name": "monolog/monolog",
+            "version": "3.10.0",
+            "scope": "require",
+            "source": "registry",
+            "direct": true,
+            "children": [
+                {
+                    "name": "psr/log",
+                    "version": "3.0.2",
+                    "scope": "require",
+                    "source": "registry",
+                    "direct": false,
+                    "children": []
+                }
+            ]
+        }
+    ],
+    "total_packages": 2,
+    "direct_count": 1,
+    "transitive_count": 1,
+    "unique_packages": [
+        "monolog/monolog:3.10.0",
+        "psr/log:3.0.2"
+    ],
+    "mend_detection_expectations": {
+        "all_packages_must_appear": true,
+        "source_for_all": "registry",
+        "no_missing_transitives": true,
+        "platform_packages_excluded": true,
+        "failure_modes_exercised": [
+            "missing transitive deps",
+            "wrong resolved version",
+            "platform package incorrectly included as installable"
+        ]
+    }
+}
